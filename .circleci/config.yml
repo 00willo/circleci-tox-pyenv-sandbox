@@ -43,7 +43,12 @@ jobs:
             echo 'eval "$(pyenv init -)"' >> ~/.bashrc
             echo 'pyenv virtualenvwrapper' >> ~/.bashrc
       - run:
-          name: Install pyenv and tox
+          name: Test basic pyenv install
+          command: |
+            cat ~/.bashrc
+            pyenv versions
+      - run:
+          name: Install required python versions with pyenv and tox
           command: |
             cat pyenv-requirements.txt
             pyenv install 3.5.6
