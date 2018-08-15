@@ -63,9 +63,7 @@ jobs:
           name: Install required python versions with pyenv and tox
           command: |
             cat pyenv-requirements.txt
-            pyenv install 3.5.6
-            pyenv install 3.6.6
-            pyenv install 3.7.0
+            pyenv install pyenv-requirements.txt
             pyenv global system 3.5.6 3.6.6 3.7.0
             pip install tox tox-pyenv
       - run:
