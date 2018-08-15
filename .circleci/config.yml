@@ -41,7 +41,7 @@ jobs:
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
             echo 'eval "$(pyenv init -)"' >> $BASH_ENV
-            echo 'pyenv virtualenvwrapper' >> $BASH_ENV
+            echo 'pyenv virtualenvwrapper' >> ~/.bashrc
       - run:
           name: Install pyenv and tox
           command: |
