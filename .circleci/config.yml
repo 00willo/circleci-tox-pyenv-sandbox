@@ -105,7 +105,8 @@ jobs:
       - run:
           name: Run tox tests
           command: |
-            pip install tox
+            pyenv versions
+            pip install tox tox-pyenv
             tox
 
 workflows:
