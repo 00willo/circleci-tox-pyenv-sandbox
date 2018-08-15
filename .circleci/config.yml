@@ -18,7 +18,7 @@ jobs:
       - restore_cache:
           key: v1-repo_code-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: 
+          keys:
             - v1-pip_cache-{{ checksum "requirements.txt" }}
             - v1-pip_cache-
       - run:
@@ -42,7 +42,7 @@ jobs:
       - restore_cache:
           key: v1-repo_code-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
-          key: 
+          keys:
             - v1-pip_cache-{{ checksum "requirements.txt" }}
             - v1-pip_cache-
       - run:
