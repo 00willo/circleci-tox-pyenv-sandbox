@@ -31,15 +31,17 @@ jobs:
             pip install --upgrade pip
             pip install --upgrade setuptools
       - run:
-          name: Setup pyenv
+          name: Download pyenv
           command: |
             git clone https://github.com/yyuu/pyenv.git ~/.pyenv
             git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
+      - run:
+          name: Configure pyenv
+          command: |
             echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $BASH_ENV
             echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $BASH_ENV
             echo 'eval "$(pyenv init -)"' >> $BASH_ENV
             echo 'pyenv virtualenvwrapper' >> $BASH_ENV
-            source $BASH_ENV
       - run:
           name: Install pyenv and tox
           command: |
