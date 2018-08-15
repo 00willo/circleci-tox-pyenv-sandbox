@@ -106,8 +106,12 @@ jobs:
           name: Run tox tests
           command: |
             pyenv versions
-            pip install tox tox-pyenv
+            pip install tox tox-pyenv retox
             tox
+      - run:
+          name: Run retox tests to compare
+          command: |
+            retox
 
 workflows:
   version: 2
