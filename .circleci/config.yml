@@ -1,0 +1,64 @@
+version: 2
+
+jobs:
+  checkout_code:
+    docker:
+      - image: python:3.6
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo_code-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/project
+
+  build_deps:
+    docker:
+      - image: python:3.6
+    steps:
+      - restore_cache:
+          key: v1-repo_code-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: 
+            - v1-pip_cache-{{ checksum "requirements.txt" }}
+            - v1-pip_cache-
+      - run:
+          name: Update pip
+          command: |
+            pwd
+            pip install --upgrade pip
+            pip install --upgrade setuptools
+      - run:
+          name: Install deps
+          command: |
+            pip install -r requirements.txt
+      - save_cache:
+          key: v1-pip_cache-{{ checksum "requirements.txt" }}
+          paths:
+            - ~/.cache/pip
+  test:
+    docker:
+      - image: python:3.6
+    steps:
+      - restore_cache:
+          key: v1-repo_code-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: 
+            - v1-pip_cache-{{ checksum "requirements.txt" }}
+            - v1-pip_cache-
+      - run:
+          name: Run tox tests
+          command: |
+            pip install tox
+            tox
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - checkout_code
+      - build_deps:
+          requires:
+            - checkout_code
+      - test:
+          requires:
+            - build_deps
