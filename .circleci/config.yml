@@ -16,7 +16,7 @@ jobs:
     steps:
       - restore_cache:
           key: v1-repo_code-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_SHA1 }}
-      - restote_cache:
+      - restore_cache:
           keys:
             - v1-pyenv_cache-{{ checksum "pyenv-requirements.txt" }}
             - v1-pyenv_cache-
@@ -67,7 +67,7 @@ jobs:
     steps:
       - restore_cache:
           key: v1-repo_code-{{ .Environment.CIRCLE_PROJECT_REPONAME }}-{{ .Environment.CIRCLE_SHA1 }}
-      - restote_cache:
+      - restore_cache:
           keys:
             - v1-pyenv_cache-{{ checksum "pyenv-requirements.txt" }}
             - v1-pyenv_cache-
