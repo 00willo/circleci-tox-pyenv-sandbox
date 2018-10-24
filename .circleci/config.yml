@@ -34,16 +34,11 @@ jobs:
           name: Download pyenv
           command: |
             set +e
-            pyenv versions
-            retval=$?
+            pyenv versions || { echo "pyenv not present, installing"; \
+                git clone https://github.com/pyenv/pyenv.git ~/.pyenv \
+                git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper \
+                }
             set -e
-            if [ $retval -ne 0 ]; then
-              echo "pyenv not present, installing..."
-              git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-              git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
-            else
-              echo "pyenv was found, skipping install"
-            fi
       - run:
           name: Configure pyenv
           command: |
