@@ -1,3 +1,5 @@
 pyenv install --skip-existing 3.5.6
 pyenv install --skip-existing 3.6.6
 pyenv install --skip-existing 3.7.0
+pyenv install --skip-existing 3.7.1
+pyenv install --skip-existing 3.8-dev
