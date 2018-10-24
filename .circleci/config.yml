@@ -116,7 +116,7 @@ jobs:
           command: |
             pyenv versions
             pyenv global system 3.5.6 3.6.6 3.7.1 3.8-dev
-            pip install tox tox-pyenv retox
+            pip install tox tox-pyenv
             tox
       - run:
           name: Run retox tests to compare
