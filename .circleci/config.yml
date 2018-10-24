@@ -35,12 +35,12 @@ jobs:
           command: |
             set +e
             pyenv versions
-            set -e
             retval=$?
+            set -e
             if [ $retval -ne 0 ]; then
               echo "pyenv not present, installing..."
-              git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-              git clone https://github.com/yyuu/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
+              git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+              git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper
             else
               echo "pyenv was found, skipping install"
             fi
