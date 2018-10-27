@@ -35,8 +35,8 @@ jobs:
           command: |
             set +e
             pyenv versions || { echo "pyenv not present, installing"; \
-                git clone https://github.com/pyenv/pyenv.git ~/.pyenv \
-                git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper \
+                git clone https://github.com/pyenv/pyenv.git ~/.pyenv; \
+                git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git ~/.pyenv/plugins/pyenv-virtualenvwrapper; \
                 }
             set -e
       - run:
